@@ -1,3 +1,6 @@
 -- push to remove repo @ github
 git push master master
 git push master zidan-20130326
+
+
+git diff // tells the diff between the current local branch and remote branch???
