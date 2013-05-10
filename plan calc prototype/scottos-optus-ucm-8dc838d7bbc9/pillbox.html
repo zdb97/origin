@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		
+		<title>Usage Calculator: Pillbox</title>
+
+		<!-- Mobi project CSS -->
+		<link href="css/app/style.css" rel="stylesheet"> 
+
+		<!-- Usage calculator POC css -->
+		<link href="css/app/usageCalculatorMobile.css" rel="stylesheet"> 
+		
+	</head>
+
+	<body>
+
+		<!-- Header bar -->
+		<div class="m-header">
+    		<div id="header">
+        		<div id="headerInner">
+            		<a class="logo" href="//optus.com.au/">Optus</a>
+            		<h1 class="pageTitle">Usage Calculator: Pillbox</h1>
+        		</div>
+    		</div>
+		</div>
+
+		<!-- Main content area -->
+		<div id="body">
+
+    		<div id="primaryContent">
+
+    			<!-- backbone app container -->
+				<div id="usageCalculatorApp">
+						
+					<!-- Container for all the actual usage calculators -->
+					<div class="calculators">
+						<!-- Backbone -->
+					</div>
+					
+					<!-- TODO populate this from the template-->
+					<div class="m-secondarySection">
+						<h2 class="h2">Data Calculator Notes</h2>
+						<div class="readingCopy">
+							<p>Please note this calculator should only be used a general guide, and does not constitute a final recommendation.</p>
+						</div>
+					</div>
+
+					<!-- CSS fixes this at bottom -->
+					<div class="usageMeterSummaryDisplay">
+						<!-- Backbone -->
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Individual activity in pillbox form -->
+		<script id="usageCalculatorActivityPillboxTemplate" type="text/template">
+			<div class="activities-itemTitle"><%= title %></div>
+			<div class="pillButtons">
+				<% for (var i = 0; i < steps.length; i++) { %>
+					<a class="<%= selectedStep === steps[i] ? 'is-active' : '' %>" href="#" data-val="<%= steps[i] %>"><%= steps[i] %></a>
+				<% } %>
+			</div>
+		</script>
+
+		<!-- Individual calculator -->
+		<script id="usageCalculatorTemplate" type="text/template">
+			<div class="control_block clearfix">
+				<h2 class="h2"><%= title %></h2>
+				<input type="hidden" class="usage_frequency" value="day">
+				<div class="activities">
+					<!-- populated via backbone -->
+				</div>
+			</div>
+		</script>
+
+		<!-- Represents a "summary" element for a given calculator -->
+		<script id="calculatorSummaryViewTemplate" type="text/template">
+			<div class="meter_summary_title"><%= title %></div>
+			<div class="meter_summary_value">
+				<span class="amount"><%= amount %></span> 
+				<span class="unit"><%= unit %></span>
+			</div>
+		</script>
+
+		<!--
+			Deps
+			TODO SM 06Feb12: Use mobi resources where available?
+		-->
+		<script src="js/lib/jquery-1.9.1.js"></script>
+		<script src="js/lib/underscore-backbone.js"></script>
+
+		<!--
+			Backbone app + json data.
+			TODO SM 06Feb12: Switch from js -> js_min folders for debugging. 
+		-->
+		<script src="js/app/usageCalculatorAppData.js"></script>
+		<script src="js/app/bbUsageCalculatorApp.js"></script>
+
+	</body>
+
+</html>

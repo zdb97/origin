@@ -1,0 +1,135 @@
+/*
+	Generic styles.
+*/
+
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/*
+    Leave space at the bottom for the usage summary.
+*/
+#usageCalculatorApp {
+    padding-bottom: 61px;
+}
+
+.activities-itemContainer {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+/*
+*/
+
+.usageMeterSummaryDisplay {
+
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+
+	display: table;
+	width: 100%;
+
+	background:#006685;
+	background:-moz-linear-gradient(top, #008db8, #006685);
+	background:-webkit-linear-gradient(top, #008db8, #006685);
+	background:-o-linear-gradient(top, #008db8, #006685);
+	background:-ms-linear-gradient(top, #008db8, #006685);
+	background:linear-gradient(top, #008db8, #006685);
+	border-top:1px solid #00a1d2;
+	border-bottom:1px solid #00526c;
+
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+
+}
+
+.usageMeterSummaryDisplay .meter_summary {
+	display: table-cell;
+	width: 50%;
+	padding: 10px;
+	position: relative;
+}
+
+.usageMeterSummaryDisplay .meter_summary:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1px;
+	height: 100%;
+	background-color: #00a1d2;
+}
+
+.usageMeterSummaryDisplay .meter_summary:first-child:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 1px;
+	height: 100%;
+	background-color: #00526c;
+}
+
+.usageMeterSummaryDisplay .meter_summary_title {
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.usageMeterSummaryDisplay .meter_summary_value {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Turn OFF for desktop */
+.usage_calculator_overlay .mobile_only {
+	display: none;
+}
+
+.usage_calculator_overlay.is_mobile .mobile_only {
+	/* FIXME What about inline? */
+	display: block;
+}
+
+/*
+	For the actual jQuery UI slider areas.
+*/
+
+.generic_usage_slider {
+	border-bottom: 1px solid #ccc;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding: 10px;
+}
+
+.generic_usage_slider:last-child {
+	border: 0;
+}
+
+.generic_usage_slider label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.generic_usage_slider .usageSlider {
+	margin-top: 2px;
+	width: 80%;
+	float: left;
+}
+
+.generic_usage_slider .variable_display {
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+
