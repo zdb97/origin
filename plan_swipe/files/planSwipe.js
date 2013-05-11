@@ -1,4 +1,4 @@
-/*global $ window Swipe console */
+/*global $ window Swipe console window */
 
 $.SwipePlans = function () {
 
@@ -7,7 +7,7 @@ $.SwipePlans = function () {
         $planContainer: $('.planSwipe'),
         $planIndicatorContainer: $('nav ul.planIndicator'),
         planIndicatorItem: 'nav ul.planIndicator li',
-        width: 40,
+        lessWidth: 40,
         gap: 30,
         activePlansContainer: '.planListContainer.is-active .planList >ul >li'
     };
@@ -15,7 +15,14 @@ $.SwipePlans = function () {
 
 
 $.SwipePlans.prototype = {
-    init: function () { },
+    init: function () {
+		var self = this;
+		$(window).on('resize', function() {
+			self.customizePlanSwiper();
+		}); 
+	},
+	
+	 
     
     showPlanSwipe: function () {
         var self = this;
@@ -24,7 +31,7 @@ $.SwipePlans.prototype = {
         $.each($(this.config.$planContainer, this.config.$activePlansContainer), function () {
             if ($(this).is(':visible')) {
 
-                self.buildPlanIndicator($('> ul > li', $(this)).length);
+                self.buildPlanIndex($('> ul > li', $(this)).length);
 
                 window.planSwipe = new Swipe($(this).get(0), {
                     // startSlide: 4,
@@ -37,16 +44,18 @@ $.SwipePlans.prototype = {
                         $.each($(self.config.planIndicatorItem), function () {
                             $(this).attr('class', '');
                         });
+						
+						console.log(index + ' ppppp');
                         $(self.config.planIndicatorItem).eq(index).attr('class', 'on');
                     }
                 });
                 
-                self.customizePlanSwiper();
+                self.customizePlanSwiper(); 
             }
         });
     },
     
-    buildPlanIndicator: function (len) {
+    buildPlanIndex: function (len) {
         for (var i = 0; i < len; i++) {
             if (i === 0) {
                 this.config.$planIndicatorContainer.append('<li itemIndex="' + i + '" class="on">');
@@ -63,18 +72,28 @@ $.SwipePlans.prototype = {
     
     customizePlanSwiper: function () {
         var self = this;
-        var planItemWidth = $(self.config.activePlansContainer).first().outerWidth() - self.config.width;
+        // set new plan container width (original - 40)
+		var planContainerWidth = $(self.config.activePlansContainer).first().outerWidth() - self.config.lessWidth;
+		// set new plan container offset/transition (original - 30)
         var ItemGap = $(self.config.activePlansContainer).first().outerWidth() - self.config.gap;
-        //console.log(planItemWidth);
         
         //console.log($(self.config.activePlansContainer).length);
-        $.each($(self.config.activePlansContainer), function (i) {
+        // apple the new calculation
+		$.each($(self.config.activePlansContainer), function (i) {
             console.log($(this).outerWidth() + ' ===-');
-            $(this).css('width', planItemWidth + 'px');
+            $(this).css('width', planContainerWidth + 'px');
             $(this).css('left', (i * ItemGap * (-1)) + 'px');
+			
+			console.log('hahahaaa');
+			//console.log($(this).css('transform'));
+			
         });
     }
+	
 };
+
+
+new $.SwipePlans().init();
 
 
 
