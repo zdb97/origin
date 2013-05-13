@@ -4,7 +4,11 @@
  * Brad Birdsall
  * Copyright 2013, MIT License
  *
+ * ZB: 13/MAY/2013: this library has been extended for customization
+ *
 */
+
+
 
 function Swipe(container, options) {
 
@@ -33,7 +37,12 @@ function Swipe(container, options) {
   var index = parseInt(options.startSlide, 10) || 0;
   var speed = options.speed || 300;
   options.continuous = options.continuous !== undefined ? options.continuous : true;
-
+  var siblingEdge = options.siblingEdge || 0;	// width of partial edge to display in visible area. [2 edges]
+  var sideMargin = options.sideMargin || 0; // left and right margin of main wipe item [x 4]
+  
+  var lessWidth = siblingEdge * 2 + sideMargin * 4;
+  var toSlide = siblingEdge * 2 + sideMargin * 2; 
+  
   function setup() {
 
     // cache slides
@@ -54,9 +63,12 @@ function Swipe(container, options) {
     slidePos = new Array(slides.length);
 
     // determine width of each slide
-    width = container.getBoundingClientRect().width || container.offsetWidth;
-
+    width = container.getBoundingClientRect().width || container.offsetWidth; 
+    
     element.style.width = (slides.length * width) + 'px';
+    
+    // customization (px to slide for each swipe-able item)
+    width = width - toSlide;			 
 
     // stack elements
     var pos = slides.length;
@@ -64,7 +76,8 @@ function Swipe(container, options) {
 
       var slide = slides[pos];
 
-      slide.style.width = width + 'px';
+      // customization (new swipe-able item width after calculation)
+      slide.style.width = (width + toSlide) - (lessWidth) + 'px';		
       slide.setAttribute('data-index', pos);
 
       if (browser.transitions) {
@@ -157,8 +170,7 @@ function Swipe(container, options) {
 
   }
 
-  function translate(index, dist, speed) {
-
+  function translate(index, dist, speed) { 
     var slide = slides[index];
     var style = slide && slide.style;
 
@@ -552,7 +564,7 @@ function Swipe(container, options) {
 
 }
 
-/*
+
 if ( window.jQuery || window.Zepto ) {
   (function($) {
     $.fn.Swipe = function(params) {
@@ -562,4 +574,3 @@ if ( window.jQuery || window.Zepto ) {
     }
   })( window.jQuery || window.Zepto )
 }
-*/

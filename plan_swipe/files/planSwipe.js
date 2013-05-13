@@ -1,106 +1,90 @@
-/*global $ window Swipe console window */
+/*global $ window Swipe */
 
-$.SwipePlans = function () {
+var SwipePlans = function () {
 
     this.config = {
-        $activePlansContainer: $('.planMasterContainer .planListContainer.is-active'),
-        $planContainer: $('.planSwipe'),
-        $planIndicatorContainer: $('nav ul.planIndicator'),
-        planIndicatorItem: 'nav ul.planIndicator li',
-        lessWidth: 40,
-        gap: 30,
-        activePlansContainer: '.planListContainer.is-active .planList >ul >li'
+        $activePlanContainer: $('.planMasterContainer .planListContainer.is-active .planSwipe'),
+        $planIndexContainer: $('nav ul.planIndicator'),
+        planIndexItem: 'nav ul.planIndicator li',
+        activePlansContainer: '.planListContainer.is-active .planList >ul >li',
+        edge: 20,
+        margin: 5
     };
-};
+}; 
 
-
-$.SwipePlans.prototype = {
+SwipePlans.prototype = {
     init: function () {
-		var self = this;
-		$(window).on('resize', function() {
-			self.customizePlanSwiper();
-		}); 
-	},
-	
-	 
-    
-    showPlanSwipe: function () {
         var self = this;
-        this.config.$planIndicatorContainer.html('');
+        this.config.$planIndexContainer.html('');
         
-        $.each($(this.config.$planContainer, this.config.$activePlansContainer), function () {
-            if ($(this).is(':visible')) {
- 
-                window.planSwipe = new Swipe($(this).get(0), {
-                    // startSlide: 4,
-                    // auto: 3000,
-                    // continuous: true,
-                    // disableScroll: true,
-                    // stopPropagation: true,
-                    // transitionEnd: function(index, element) {}
-                    callback: function (index, element) {
-                        $.each($(self.config.planIndicatorItem), function () {
-                            $(this).attr('class', ''); 
-                        });
-						
-						console.log(index + ' pppps');
-                        
-						//self.buildPlanIndex($(element).siblings().addBack().length);
-						$(self.config.planIndicatorItem).eq(index).attr('class', 'on');
-						
-						$(self.config.activePlansContainer).css({ 'opacity' : 0.5 });
-						$(self.config.activePlansContainer).eq(index).css({ 'opacity' : 1 });
-                    }
-                });
-                
-				//console.log('muuuu');
-                self.buildPlanIndex($('> ul > li', $(this)).length);
-                self.customizePlanSwiper(); 
-            }
+        $.each($(this.config.$activePlanContainer), function () {
+            self.buildPlanSwipe($(this));
         });
+    },
+
+    buildPlanSwipe: function ($this) {
+        var self = this;
+        if ($this.is(':visible')) {
+
+            window.planSwipe = new Swipe($this.get(0), {
+                // startSlide: 4,
+                // auto: 3000,
+                // continuous: true,
+                // disableScroll: true,
+                // stopPropagation: true,
+                // transitionEnd: function(index, element) {}
+                siblingEdge: self.config.edge,
+                sideMargin: self.config.margin,
+                callback: function (index, elem) {
+                    $(self.config.planIndexItem).removeClass('on');
+                    $(self.config.planIndexItem).eq(index).addClass('on');
+                    
+                    $(self.config.activePlansContainer).removeClass('on');
+                    $(elem).addClass('on');
+                }
+            });
+
+            self.buildPlanIndex(window.planSwipe.getNumSlides());
+            self.setSwipeItem(self.getSwipeItemHeight());
+        }
     },
     
     buildPlanIndex: function (len) {
         for (var i = 0; i < len; i++) {
             if (i === 0) {
-                this.config.$planIndicatorContainer.append('<li itemIndex="' + i + '" class="on">');
-				$(this.config.activePlansContainer).eq(i).css({ 'opacity' : 1 });  
+                this.config.$planIndexContainer.append('<li itemIndex="' + i + '" class="on">');
             }
             else {
-                this.config.$planIndicatorContainer.append('<li itemIndex="' + i + '">');
-				$(this.config.activePlansContainer).eq(i).css({ 'opacity' : 0.5 });
+                this.config.$planIndexContainer.append('<li itemIndex="' + i + '">');
             }
         }
 
-        $(this.config.planIndicatorItem).on('hover', function () {
+        $(this.config.planIndexItem).on('hover', function () {
             window.planSwipe.slide($(this).attr('itemIndex'), 300);
         });
     },
     
-    customizePlanSwiper: function () {
+    getSwipeItemHeight: function () {
         var self = this;
-        // set new plan container width (original - 40)
-		var planContainerWidth = $(self.config.activePlansContainer).first().outerWidth() - self.config.lessWidth;
-		// set new plan container offset/transition (original - 30)
-        var ItemGap = $(self.config.activePlansContainer).first().outerWidth() - self.config.gap;
-        
-        //console.log($(self.config.activePlansContainer).length);
-        // apple the new calculation
-		$.each($(self.config.activePlansContainer), function (i) {
-            //console.log($(this).outerWidth() + ' ===-');
-            $(this).css('width', planContainerWidth + 'px');
-            $(this).css('left', (i * ItemGap * (-1)) + 'px');
-			
-			//console.log($(this).css('transform'));
-			
+        var maxH = 0;
+        $.each($(self.config.activePlansContainer), function () {
+            maxH = maxH > $(this).outerHeight() ? maxH : $(this).outerHeight();
+            //console.log(maxH);
         });
+        
+        return maxH;
+    },
+    
+    setSwipeItem: function (h) {
+        if (this.config.margin !== 'undefined' || this.config.margin !== '') {
+            $(this.config.activePlansContainer).css({'margin-left': this.config.margin + 'px',
+                'margin-right': this.config.margin + 'px'});
+        }
+        
+        $(this.config.activePlansContainer).css({'height': h});
+        $(this.config.activePlansContainer).eq(0).addClass('on');
     }
-	
 };
 
-
-new $.SwipePlans().init();
-
-
-
+//new SwipePlans().init();
 
