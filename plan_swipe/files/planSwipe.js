@@ -7,10 +7,12 @@ var SwipePlans = function () {
         $planIndexContainer: $('nav ul.planIndicator'),
         planIndexItem: 'nav ul.planIndicator li',
         activePlansContainer: '.planListContainer.is-active .planList >ul >li',
+        bonusContainer: '.planBonus',
         edge: 20,
         margin: 5
     };
-}; 
+};
+
 
 SwipePlans.prototype = {
     init: function () {
@@ -39,8 +41,23 @@ SwipePlans.prototype = {
                     $(self.config.planIndexItem).removeClass('on');
                     $(self.config.planIndexItem).eq(index).addClass('on');
                     
-                    $(self.config.activePlansContainer).removeClass('on');
+                    $(self.config.activePlansContainer).removeClass('on prev next');
                     $(elem).addClass('on');
+                    
+                    if ($(elem).prev().length) {
+                        $(elem).prev().addClass('prev');
+                    }
+                    else {
+                        $(elem).siblings(':last').addClass('prev');
+                    }
+                    
+                    if ($(elem).next().length) {
+                        $(elem).next().addClass('next');
+                    }
+                    else {
+                        $(elem).siblings(':first').addClass('next');
+                    }
+                    
                 }
             });
 
@@ -68,7 +85,10 @@ SwipePlans.prototype = {
         var self = this;
         var maxH = 0;
         $.each($(self.config.activePlansContainer), function () {
-            maxH = maxH > $(this).outerHeight() ? maxH : $(this).outerHeight();
+            var bounuH = $(self.config.bonusContainer, this).length > 0 ? $(self.config.bonusContainer, this).outerHeight() : 0;
+            //console.log(bounuH);
+
+            maxH = maxH > ($(this).outerHeight() + bounuH) ? maxH : ($(this).outerHeight() + bounuH);
             //console.log(maxH);
         });
         
