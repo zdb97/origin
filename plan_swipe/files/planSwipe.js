@@ -103,6 +103,8 @@ SwipePlans.prototype = {
         
         $(this.config.activePlansContainer).css({'height': h});
         $(this.config.activePlansContainer).eq(0).addClass('on');
+		$(this.config.activePlansContainer).eq(1).addClass('next');
+        $(this.config.activePlansContainer).last().addClass('prev');
     }
 };
 

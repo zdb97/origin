@@ -2,3 +2,15 @@
 	margin-left: 30px !important;
 }
 
+.planList>ul>li.prev, .planList>ul>li.next {
+	z-index: 2;
+}
+
+.planList>ul>li.on {
+	background-color: #fff;
+	z-index: 3;
+}
+
+.planList>ul>li {
+	background-color: #d9d9d9;
+}
