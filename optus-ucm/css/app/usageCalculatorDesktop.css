@@ -1,0 +1,426 @@
+/*----------------- global ------------------------*/
+body {
+	background-color: #fff;
+	background-image: none;
+}
+/*-----------------------------------------------------------*/
+
+#usageCalculatorApp {
+	color: #666;
+}
+ 
+.m-section {
+	background-color: #EEE;
+	border-radius: 5px;
+	padding: 5px;
+	border: 0;
+}
+
+.m-section .sectionHeaderContainer {
+	background-color: #E1DFE0;
+	font-size: 18px;
+	color: #666;
+	font-weight: 700;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.m-section .sectionHeaderContainer .count {
+	background-color: #D6D4D5;
+	display: inline-block;
+	line-height: 30px;
+	padding: 5px 12px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px; 
+}
+
+.m-section .sectionHeaderContainer .heading {
+	display: inline-block;
+	padding: 10px 0 10px 5px;
+}
+ 
+ 
+ 
+/* device listing */
+.m-section.deviceSelection {
+	min-width: 600px;
+}
+.m-section .deviceListing ul li {
+	width: 32%;
+	border: 1px solid black;
+	padding: 0;
+	display: inline-block;
+	text-align: center;
+	background-color: white;
+	color: #CFCBCA;
+	font-weight: 700;
+	border-radius: 4px;
+	margin: 5px auto 0;
+	margin-right: 2%;
+	cursor: pointer;
+	height: 60px;
+}
+.m-section .deviceListing ul li:hover,
+.m-section .deviceListing ul li.is-selected {
+	border: 3px solid teal;  
+}
+.m-section .deviceListing ul li.last,
+.m-section .deviceListing ul li:last-child{
+	margin-right: 0;
+}
+.m-section .deviceListing ul li div.device {
+	background-image: url(../../images/calc-sprite.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: table; 
+	overflow: hidden;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+.m-section .deviceListing ul li:hover .device,
+.m-section .deviceListing ul li.is-selected .device {
+	color: teal;	
+}
+.m-section .deviceListing ul li.mobile .device {
+	background-position: 25px -703px; 
+}
+.m-section .deviceListing ul li.mobile:hover .device,
+.m-section .deviceListing ul li.mobile.is-selected .device {
+	background-position: 23px -788px;
+}
+.m-section .deviceListing ul li.tablet .device {
+	background-position: 25px -1110px;
+}
+.m-section .deviceListing ul li.tablet:hover .device,
+.m-section .deviceListing ul li.tablet.is-selected .device  {
+	background-position: 23px -1199px;
+}
+.m-section .deviceListing ul li.modem .device {
+	background-position: 25px -229px;
+}
+.m-section .deviceListing ul li.modem:hover .device,
+.m-section .deviceListing ul li.modem.is-selected .device  {
+	background-position: 23px -318px;
+}
+.m-section .deviceListing ul li .device .cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+.m-section .deviceListing ul li .device .cell span{
+	max-width: 138px;
+	display: block;
+	margin: 0 auto;
+	line-height: 14px;
+}
+
+ 
+
+/* calculator */
+.usageCalculator  {
+	min-width: 600px;
+	position: relative;
+}
+.usageCalculator .calcMask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	opacity: 0.25;
+	filter:  alpha(opacity=25);
+	background-color: teal;
+	display: none;
+}
+.usageCalculator .calcReset {
+	position: absolute;
+	right: 9px;
+	top: 9px;
+	background-image: url(../../images/calc-sprite.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-position: 0 0; 
+	width: 153px; 
+	height: 32px;
+	cursor: pointer;
+}
+
+
+.calculators .m-section {
+	-moz-box-shadow: 0 0 0;
+	-webkit-box-shadow: 0 0 0;
+	box-shadow: 0 0 0;
+	color: #666;
+	margin: 0; 
+	padding-bottom: 20px; 
+}
+.calculators .m-section:first-child {
+	border-bottom: 1px solid #E1DFE0; 
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0; 
+}
+
+
+/* meter summary  */
+.calculators .m-section .activities .meter_summary {
+	position: absolute;
+	right: 2%;
+	top: 40px;
+	width: 23%;
+	text-align: right;
+	border-left: 1px solid #999; 
+}
+.calculators .m-section .activities .meter_summary {
+	height: 343px;
+}
+.calculators .m-section:first-child .activities .meter_summary {
+	height: 49px;
+}
+
+.calculators .m-section .activities .meter_summary:before {
+	content: "";
+	position: absolute;
+	width: 7px;
+	height: 0px;
+	border-top: 1px solid #999;
+	top: 0;
+	left: -8px;
+}
+.calculators .m-section .activities .meter_summary:after {
+	content: "";
+	position: absolute;
+	width: 7px;
+	height: 0px;
+	border-top: 1px solid #999;
+	bottom: 0;
+	left: -8px;
+}
+.calculators .m-section .activities .meter_summary .meter_summary_cell {
+	height: 44px;
+	position: absolute;
+	top: 50%;
+	margin-top: -22px;
+	right: 0;
+}
+.calculators .m-section .activities .meter_summary .meter_summary_value {
+	color: teal;
+	font-size: 40px;
+	padding: 0 0 5px 0;
+}
+.calculators .m-section .activities .meter_summary .meter_summary_title {
+	font-size: 16px;
+}
+.calculators .m-section .activities .meter_summary .indicator {
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	width: 10px;
+	border-top: 1px solid #999;
+}
+
+
+
+ 
+.control_block  h2 {
+	margin-bottom: 0;
+}
+.control_block  h2 span {
+	font-weight: 400;
+	font-size: 12px;
+	padding: 0 0 0 5px;
+}
+
+.control_block .activities {
+	position: relative;
+}
+
+.control_block .activities-itemContainer {
+	height: 40px;
+	padding: 23px 0 26px;
+	position: relative;
+	width: 75%;
+}
+.control_block .activities-itemContainer .activities-itemTitle {
+	display: table;
+	width: 30%;
+	line-height: 14px; 
+	padding: 0 20px 0 38px;
+	font-size: 12px; 
+	background-image: url(../../images/calc-sprite.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	height: 30px;
+	float: left;
+}
+.control_block .activities-itemContainer .activities-itemTitle span {
+	display: table-cell;
+	vertical-align: middle;	
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.call {
+	background-position: 0 -416px;
+}
+.control_block .activities-itemContainer .activities-itemTitle.minute {
+	background-position: 0 -1296px;
+}
+.control_block .activities-itemContainer .activities-itemTitle.page {
+	background-position: 0 -1456px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.email {
+	background-position: 0 -556px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.video{
+	background-position: 0 -1042px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.song {
+	background-position: 0 -882px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.app {
+	background-position: 0 -162px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.GPS {
+	background-position: 0 -962px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.socialMedia {
+	background-position: 0 -636px;
+}
+
+.control_block .activities-itemContainer .activities-itemTitle.videoCall {
+	background-position: 0 -1376px;
+}
+ 
+.control_block .activities-itemContainer .slider {
+	display: inline-block;
+	float: left;
+	width: 68%;
+}
+.control_block .activities-itemContainer .range {
+	position: absolute;
+	right: 2%;
+	top: 10px;
+	font-size: 12px;
+}
+.control_block .activities-itemContainer .range .value {
+	padding: 0 5px 0 0;
+}
+
+
+/* ---------- device suggestion ---------- */
+.m-section.deviceSuggestion {
+	padding: 5px 5px 30px 5px;
+	min-width: 600px;
+	display: none;
+} 
+.deviceSuggestion .deviceSuggestionTxt {
+	display: inline-block;
+	font-size: 15px;
+	color: #666;
+	width: 50%;
+	padding: 20px 0 0 10px;
+}
+.deviceSuggestion .deviceSuggestionBtn {
+	float: right;
+	margin: 20px 30px 10px 10px;
+	color: teal;
+	border-radius: 5px;
+	padding: 5px 20px;
+	background-color: #FFEA00;
+	background: linear-gradient(top, #FFEA00, #FFD800);
+	background: -webkit-linear-gradient(top, #FFEA00, #FFD800);
+	background: -moz-linear-gradient(top, #FFEA00, #FFD800);
+	background: -ms-linear-gradient(top, #FFEA00, #FFD800);
+	background: -o-linear-gradient(top, #FFEA00, #FFD800);
+	
+}
+
+/* data usage legend */
+.dataUsageLegend {
+	font-size: 10px;
+	margin: 0 0 20px 0;	
+	min-width: 600px;
+}
+.dataUsageLegend h4 {
+	font-weight: 700;
+}
+.dataUsageLegend  ul {
+	padding: 10px 0; 
+}
+.dataUsageLegend ul li {
+	display: inline-block;
+	width: 48%;
+	margin: 0 5px 0 0;
+	line-height: 10px; 
+}
+.dataUsageLegend .dataUsageDetails {
+	line-height: 12px;
+}
+
+
+
+/*--------- juery UI slider selectors ---------*/
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+	border-bottom-left-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+	border-top-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+	border-top-left-radius: 4px;
+}
+.ui-widget-content {
+	border: 1px solid #aaaaaa;
+	background: #ccc;
+	color: #222222;
+	box-shadow: inset 0px 1px 1px #aaa;
+}
+.ui-widget {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+}
+.ui-slider-horizontal {
+	height: 12px;
+}
+.ui-slider {
+	position: relative;
+	text-align: left;
+}
+
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+	border-top-left-radius: 4px;
+}
+.ui-widget-content .ui-state-default {
+	background: url(../../images/calc-sprite.png) no-repeat 0 -1536px transparent;
+	width: 30px;
+	height: 25px;
+} 
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	cursor: pointer;
+	top: -8px;
+	margin-left: -20px;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+.ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1; 
+	display: block;
+	border: 0;
+	background-position: 0 0;
+	background-color: #066885;
+}

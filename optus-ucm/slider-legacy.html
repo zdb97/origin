@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		
+		<title>Usage Calculator: Legacy Slider</title>
+
+		<!-- jQuery UI css - smoothness theme -->
+		<link href="css/lib/jquery-ui-mobile.css" rel="stylesheet">
+
+		<!-- Mobi project CSS -->
+		<link href="css/app/style.css" rel="stylesheet"> 
+		
+		<!-- Usage calculator POC css -->
+		<link href="css/app/usageCalculatorMobile.css" rel="stylesheet"> 
+
+	</head>
+
+	<body>
+
+		<!-- Header bar -->
+		<div class="m-header">
+    		<div id="header">
+        		<div id="headerInner">
+            		<a class="logo" href="//optus.com.au/">Optus</a>
+            		<h1 class="pageTitle">Usage Calculator: Legacy Slider</h1>
+        		</div>
+    		</div>
+		</div>
+
+		<!-- Main content area -->
+		<div class="content_section">
+			<div class="section_12 section clearfix">
+				<div class="col_4 col first"> 
+					<div id="body">
+			    		<div id="primaryContent">
+
+		        			<!-- Backbone usage html -->
+		        			<!-- TODO Split out into client-side templates! -->
+
+							<div id="usageCalculatorOverlay" class="usage_calculator_overlay is_mobile">
+
+								<!--
+	    						<div class="m-secondarySection header_section clearfix">
+									<a href="#" class="primaryButton withSpacing">Learn about Osiris Plans</a>
+									<a id="resetCalculatorBtn" href="#" class="primaryButton withSpacing">Reset Calculators</a>
+								</div>
+								-->
+
+								<div class="usageMeterSummaryDisplay">
+
+									<div class="meter_summary voice_meter_summary">
+										<div class="meter_summary_title">Monthly Voice</div>
+										<div class="meter_summary_value">
+											<span class="number">0</span> <span class="unit">Min</span>
+										</div>
+									</div>
+
+									<div class="meter_summary data_meter_summary">
+										<div class="meter_summary_title">Monthly Data</div>
+										<div class="meter_summary_value">
+											<span class="number">0</span> <span class="unit">MB</span>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- voice usage calculator -->
+								<div id="voiceUsageCalculator" class="m-section calculator_section usageCalculatorContainer clearfix page_contents">
+
+									<div class="control_block clearfix">
+										
+										<h2 class="h2">Voice usage per day</h2>
+										
+										<!--
+										<div class="frequency_selector" >
+											<label>How much calls you make each </label> 
+											<select id="voiceSliderFrequency" class="voice_frequency">
+												<option value="day">Day</option>
+											  	<option value="month">Month</option>
+											</select>  
+										</div>
+										-->
+										<input type="hidden" id="voiceSliderFrequency" class="voice_frequency" value="day">
+										
+										<div id="bb_voice_sliders" class="usage_sliders clearfix">
+											<!-- slider populated via backbone -->
+										</div>
+										
+									</div>
+									
+								</div>
+
+								<!-- data usage calculator -->
+								<div id="dataUsageCalculator" class="m-section calculator_section usageCalculatorContainer clearfix page_contents">
+								
+									<div class="control_block clearfix">
+										
+										<h2 class="h2">Data usage per day</h2>
+										
+										<!--
+										<div class="frequency_selector" >
+											<label>How much data you use each </label> 
+											<select id="dataSliderFrequency" class="data_frequency">
+											  <option value="day">Day</option>
+											  <option value="month">Month</option>
+											</select> 
+										</div>
+										-->
+										<input type="hidden" id="dataSliderFrequency" class="data_frequency" value="day">
+										
+										<div id="bb_data_sliders" class="usage_sliders clearfix">
+											<!-- slider populated via backbone -->
+										</div>
+										
+									</div>
+									 
+								</div>
+									
+								<!-- this is also part of the DataUsageCalculatorSlidersView -->
+								
+								<!-- TODO populate this from the template-->
+								<div class="m-section data_usage_legend_section">
+									<div class="data_usage_legends clearfix">
+
+										<h2 class="h2">Data usage legend</h2>
+
+										<div class="data_usage_legend">
+											1 web page (based on average of top 25 most visited sites) = 0.289MB
+										</div>
+										<div class="data_usage_legend">
+											1 email (with standard attachment) = 300KB
+										</div>
+										<div class="data_usage_legend">
+											1 minute of streaming video (standard) = 2MB
+										</div>
+										<div class="data_usage_legend">
+											1 minute of streaming music (standard) = 500KB
+										</div>
+										<div class="data_usage_legend">
+											1 app/game/song downloaded = 4MB
+										</div>
+									</div>
+
+									<div class="data_usage_legend_note">
+										Voice and Data usage varies by device. Above examples are based on averages and are estimates only. Voice calls is inclusive of standard national national calls only. The actual amounof used for the described activity can vary and customers are to regularly check and manage your useage
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Footer bar -->
+		<div id="footer">
+    		<p class="copyright">Copyright &copy; 2013 Singtel Optus Pty Ltd</p>
+		</div>
+
+		<!-- FIXME SM 06Feb13: Copied from vault/onePortal/opfiles/freemarker/frontend/backbone/usageCalculatorBackboneTemplates.ftl -->
+		<!-- Because this POC is static html -->
+		<script id="usageSliderTemplate" type="text/template">
+
+			<div class="generic_usage_slider clearfix <%= type %>">
+				
+				<label><%= label %></label>
+				
+				<div class="usageSlider">
+					<div id="usage_slider_<%= type %>" class="fn-slider <%= type %>" data-range="<%- range.toString() %>" data-amount-per-unit="<%=dataPerUnit%>" data-target-display="#<%=type%>_display"></div>
+					<input type='hidden' class='filterValue<%=type=='time' ?' time_value': ''%>' value='0' id='filterValue_<%=type%>' />
+				</div>
+
+				<div id="<%=type%>_display" class="variable_display">
+					<span class="num<%=type=='time' ?' time_value': ''%>"><%=type=='time' ?' 00:00': '0'%></span>
+					<%= type=='call' ? ' Calls' : type=='time' ?' Minutes': '' %>
+				</div>
+
+			</div>
+
+		</script>
+
+		<!--
+			Deps
+			TODO SM 06Feb12: Use mobi resources where available?
+		-->
+		<script src="js/lib/jquery-1.9.1.js"></script>
+		<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="js/lib/jquery.ui.touch-punch.js"></script>
+		<script src="js/lib/underscore-backbone.js"></script>
+
+		<!--
+			Backbone app + json data.
+			TODO SM 06Feb12: Switch from js -> js_min folders for debugging. 
+		-->
+		<script src="js/app/planSliderMockDataLegacy.js"></script>
+		<script src="js/app/bbUsageCalculatorLegacy.js"></script>
+
+	</body>
+
+</html>
