@@ -53,7 +53,7 @@ var usageCalculatorCollection = null;
 	 		activities: null
 		},
 
-		initialize: function (attributes) {
+		initialize: function (attributes) { 
 			this.set('activities', new UsageCalculatorActivityCollection(attributes.activities));
 		},
 
@@ -241,15 +241,30 @@ var usageCalculatorCollection = null;
 						{ silent: true }
 					);
 					
-					self.eventDispatcher.trigger('activitySelectedStepChange');
+					self.eventDispatcher.trigger('activitySelectedStepChange'); 
 				}
-			});
+			}); 
 			
+			 
+			$('.calcReset').on('click', {me: self}, this.handleResetClick); 
+			 
 			// Return this to enable chained calls.
 			return this;
 		}, 
 		
-		handleSlide: function (e) { }
+		handleSlide: function (e) { },
+		
+		// this is ugly, any better approach ??
+		handleResetClick: function (e) {
+			$('.slider').slider('value', 0);
+				
+			e.data.me.model.set(
+				{ selectedStep: 0 }, 
+				{ silent: true }
+			);
+					
+			e.data.me.eventDispatcher.trigger('activitySelectedStepChange');  
+		}
 
 	});
 
@@ -382,11 +397,11 @@ var usageCalculatorCollection = null;
 					break;
 
 				}
-
+				
 				$activities.append(activityView.render().el);
 
 			});
-
+			
 			// Return this to enable chained calls.
 			return this;
 
@@ -414,7 +429,7 @@ var usageCalculatorCollection = null;
 		
 		render: function () {
             // TODO Should this view be the one responsible for formatting the number?
-
+			
 			var data = { 
 				type: this.model.get('type'),	
 				title: this.model.get('summaryTitle'),
@@ -439,7 +454,7 @@ var usageCalculatorCollection = null;
 			}
 			
 			this.$el.html(this.template(data));
-
+ 
 			// Return this to enable chained calls.
 			return this;
 		},
@@ -490,9 +505,9 @@ var usageCalculatorCollection = null;
 			
 			// disable all slide if no device type is selected
 			if (!data.deviceFlag) {
-				$.each($('.slider'), function (i) {
+				//$.each($('.slider'), function (i) {
 					$('.slider').slider("disable"); 
-				});
+				//});
 				
 				//show calc mask
 				$('.usageCalculator .calcMask').show();
@@ -515,15 +530,15 @@ var usageCalculatorCollection = null;
 	
 		deviceTypeClick: function (e) {
 			e.stopPropagation();
+			 
 			//highlight the clicked device  by changing its (li) class
 			this.$el.find('li').removeClass('is-selected');
 			$(e.target).closest('li').addClass('is-selected');
 			
 			//enable all slider
-			$.each($('.slider'), function (i) {
+			//$.each($('.slider'), function (i) {
 				$('.slider').slider("enable");
-				//$(".slider").slider( "value", 0); 
-			});
+			//});
 			
 			//hide calc mask
 			$('.usageCalculator .calcMask').hide();
@@ -531,6 +546,8 @@ var usageCalculatorCollection = null;
 			var data = this.getModelData();
 			var currIndex = $(e.target).closest('li').attr('dataindex');
 			this.displayCalculator(data.device[currIndex]);
+			
+			this.eventDispatcher.trigger('activitySelectedStepChange');
 		},
 		
 		displayCalculator: function (d) { 
@@ -574,7 +591,6 @@ var usageCalculatorCollection = null;
 			} 
 		
 			this.$el.html(this.template(data));
-		//	console.log(this.$el.html());
 			 
 			// Return this to enable chained calls.
 			return this;
@@ -671,10 +687,8 @@ var usageCalculatorCollection = null;
 			//console.log(dataUsageView.el);
 			$dataUsageElem.append(dataUsageView.render().el); 
 		}); 
-		/*
-		$.each($('.meter_summary'), function(i) {
-			$('#usageCalculatorApp.desktop .calculators .m-section:eq(' + i + ') .activities').append($('.meter_summary:eq(' + i + ')')); 
-		});	*/
+		 
+		
 	});
 
 }(window));
