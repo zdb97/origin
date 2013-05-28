@@ -1,7 +1,3 @@
-/*
-    ZB 24May13: Desktop version of the usage calculator.
-*/
-
 var usageCalculatorData = {	
 	devices: {
 		deviceQuery: "devicetype",
@@ -26,7 +22,8 @@ var usageCalculatorData = {
 					usage: "calls",
                     range: [
                         0, 20
-                    ]
+                    ],
+                    index: 0
                 }, 
                 {
                     title: "Time spent on each call",
@@ -34,7 +31,8 @@ var usageCalculatorData = {
 					usage: "mins",
                     range: [
                         0, 60
-                    ]
+                    ],
+                    index: 1
                 }
             ]
         },
@@ -63,48 +61,54 @@ var usageCalculatorData = {
                     unit: "page",
 					usage: "pages",
                     range : [
-                        0, 50
-                    ]
+                        0, 200
+                    ],
+                    index: 2
                 }, 
                 {
                     title: "Emails with attachment",
                     unit: "email",
 					usage: "emails",
                     range: [
-                        0, 50
-                    ]
+                        0, 200
+                    ],
+                    index: 3
                 }, 
                 {
                     title: "Streaming video",
                     unit: "video",
 					usage: "mins",
                     range: [
-                        0, 50
-                    ]
+                        0, 240
+                    ],
+                    index: 4
                 }, 
                 {
                     title: "Streaming music",
                     unit: "song",
 					usage: "mins",
                     range: [
-                        0, 300
-                    ]
+                        0, 240
+                    ],
+                    index: 5
                 }, 
                 {
                     title: "Apps/ Games/ Songs",
                     unit: "app",
 					usage: "items",
                     range: [
-                        0, 50
-                    ]
+                        0, 10
+                    ],
+                    index: 6
                 },
 				{
                     title: "GPS Navigation",
                     unit: "GPS",
 					usage: "mins",
                     range: [
-                        0, 50
-                    ]
+                        0, 240
+                    ],
+                    index: 7
                 },
 				{
                     title: "Social media posts with photos",
@@ -112,15 +116,17 @@ var usageCalculatorData = {
 					usage: "posts",
                     range: [
                         0, 50
-                    ]
+                    ],
+                    index: 8
                 },
 				{
                     title: "Video calling",
                     unit: "videoCall",
 					usage: "mins",
                     range: [
-                        0, 50
-                    ]
+                        0, 240
+                    ],
+                    index: 9
                 }
             ] 
         }

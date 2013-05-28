@@ -1,5 +1,7 @@
 # Pillbox or Slider
 
+##NEED TO PLACE THE PILLBOX/SLIDER WIDGET ON A SERVER FOR COOKIE TO WORK
+
 ## Questions
 
 Q: How should the UI decide on which one to render? JSON-driven or HTML attribute driven?
@@ -19,12 +21,5 @@ A: ???
 
 ## Slider and Pillbox
 
-Views:
-* PillboxActivityView
-* SliderActivityView
-
-Templates:
-* usageCalculatorActivityPillboxTemplate
-* usageCalculatorActivitySliderTemplate
 
  
