@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		
+		<title>Usage Calculator: New Slider</title>
+
+		<!-- Mobi project CSS -->
+		<link href="css/app/style.css" rel="stylesheet"> 
+
+		<!-- Usage calculator POC css -->
+		<link href="css/app/usageCalculatorDesktop.css" rel="stylesheet"> 
+		
+	</head>
+
+	<body>
+
+		<!-- Header bar -->
+		<div class="m-header">
+    		<div id="header">
+        		<div id="headerInner">
+            		<a class="logo" href="//optus.com.au/">Optus</a>
+            		<h1 class="pageTitle">Usage Calculator: Slider</h1>
+        		</div>
+    		</div>
+		</div>
+
+		<!-- Main content area -->
+		<div id="body">
+
+    		<div id="primaryContent">
+				 
+    			<!-- backbone app container -->
+				<div id="usageCalculatorApp" class="desktop">
+					 
+
+					<!-- DESKTOP ONLY: DEVICE SELECTION -->
+					<div class="deviceSelection m-section">
+						<div class="sectionHeaderContainer">
+							<div class="count">1.</div>
+							<div class="heading">Select your device type</div>
+						</div>	
+						<div class="deviceListing"> 
+							<!-- Backbone --> 
+						</div>
+					</div>
+					
+					<!-- 2 -->
+					<div class="usageCalculator m-section">		
+						<div class="sectionHeaderContainer">
+							<div class="count">2.</div>
+							<div class="heading">Estimate your daily usage</div>
+						</div>	
+						
+						<!-- Container for all the actual usage calculators -->
+						<div class="calculators" deviceType=""> 
+							<!-- Backbone -->
+						</div>
+						
+						<div class="usageMeterSummaryDisplay">
+							<!-- Backbone -->
+						</div>
+						
+						<div class="calcReset"></div>
+						<div class="calcMask"></div>
+					</div>
+						
+					<!-- 3 -->						
+					<div class="deviceSuggestion m-section">		
+						<div class="sectionHeaderContainer">
+							<div class="count">3.</div>
+							<div class="heading">Need a <span class="deviceType"></span>?</div>
+						</div>	
+						<div class="">
+							<div class="deviceSuggestionTxt">
+							 Browse our fantastic range of <span class="deviceType"></span> to find one that suits you.
+							</div>
+							<a class="deviceSuggestionBtn" href="">
+								See all <span class="deviceType"></span>
+							</a>
+						</div>
+					</div>	
+						
+					<!-- data usage legend -->	
+					<div class="dataUsageLegend">
+						<!-- Backbone -->
+					</div>
+						
+						
+                    <!-- Shows up while page is loading -->
+					<!--
+					<div class="m-secondarySection">
+						<h2 class="h2">Data Calculator Notes</h2>
+						<div class="readingCopy">
+							<p>Please note this calculator should only be used a general guide, and does not constitute a final recommendation.</p>
+						</div>
+					</div> 
+					-->
+				</div> 
+			
+			
+			</div> 
+		</div>
+
+<!-- device type listing -->
+<script id="DeviceTypeViewTemplate" type="text/template">
+	<% for (var i = 0; i < device.length; i++) { %>
+		<li class="<%= device[i].className %>" dataindex="<%= i %>">
+			<div class="device">
+				<div class="cell"><span><%= device[i].deviceName %></span></div>
+			</div>
+		</ul>
+	<% } %>		 
+</script>
+
+<!-- Individual activity in slider form -->
+<script id="usageCalculatorActivitySliderTemplate" type="text/template">
+	<div class="activities-itemTitle <%= unit %>"><span><%= title %></span></div>
+	<div class="slider"></div>
+	<div class="range"><span class="value">0</span><%= usage %></div>
+</script>
+
+<!-- Individual calculator -->
+<script id="usageCalculatorTemplate" type="text/template">
+	<div class="control_block clearfix">
+		<h2 class="h2"><%= title %><span><%= frequency %></span></h2>
+		<input type="hidden" class="usage_frequency" value="day">
+		<div class="activities">
+			<!-- populated via backbone -->
+		</div>
+	</div>
+</script>
+
+<!-- Represents a "summary" element for a given calculator -->
+<script id="calculatorSummaryViewTemplate" type="text/template">
+	<div class="meter_summary_cell">
+		<div class="meter_summary_value">
+				<%= amount %>
+			</div>
+		<div class="meter_summary_title">
+			<span class="unit"><%= unit %>/</span>
+			<span class="cycle"><%= title %></span>
+		</div> 
+	</div>
+	<div class="indicator"></div>
+</script>
+
+<!-- Represents data usage legend -->
+<script id="dataUsageLegendViewTemplate" type="text/template">
+	<h4><%= title %></h4>
+	<ul>
+		<% for (var i = 0; i < listing.length; i++) { %>
+			<li><%= listing[i] %></li>
+		<% } %>
+	</ul>
+	<div class="dataUsageDetails">
+		<%= details %>
+	</div>
+</script>	
+		
+
+		<!--
+			Deps
+		-->
+		<script src="js/lib/jquery-1.9.1.js"></script>
+		<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="js/lib/jquery.ui.touch-punch.js"></script>
+		<script src="js/lib/jquery.cookie.js"></script>
+		<script src="js/lib/underscore-backbone.js"></script>
+
+		<!--
+            Backbone app + json data.
+		-->
+		<script src="js/app/usageCalculatorAppDataDesktop.js"></script>
+		<script src="js/app/bbUsageCalculatorApp.js"></script>
+
+	</body>
+
+</html>

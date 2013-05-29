@@ -1,0 +1,172 @@
+/*
+	Generic styles.
+*/
+
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/*
+    Leave space at the bottom for the usage summary.
+*/
+#usageCalculatorApp { 
+	padding-top: 55px;
+}
+
+.activities-itemContainer {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.control_block  h2 { 
+	font-size: 16px;
+}
+.control_block  h2 sub {
+	font-weight: 400;
+	position: relative;
+	left: 5px;
+	bottom: 3px;  
+}
+.activities-itemContainer .hidden-msg {
+	display: none;
+	color: red;
+	font-size: 12px;
+	margin-top: -9px;
+}
+
+
+/*
+*/
+
+.usageMeterSummaryDisplay { 
+	position: fixed;
+	top: 41px; 
+	left: 0;
+	right: 0;
+	z-index: 999;
+
+	display: table;
+	width: 100%;
+
+	background:#006685;
+	background:-moz-linear-gradient(top, #008db8, #006685);
+	background:-webkit-linear-gradient(top, #008db8, #006685);
+	background:-o-linear-gradient(top, #008db8, #006685);
+	background:-ms-linear-gradient(top, #008db8, #006685);
+	background:linear-gradient(top, #008db8, #006685);
+	border-top:1px solid #00a1d2;
+	border-bottom:1px solid #00526c;
+
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+
+}
+
+.usageMeterSummaryDisplay .meter_summary {
+	display: table-cell;
+	width: 50%;
+	padding: 10px 10px 10px 20px;
+	position: relative; 
+	height: auto;
+}
+
+.usageMeterSummaryDisplay .meter_summary:first-child {
+	text-align: right;
+	padding: 10px 20px 10px 10px;
+}
+
+.usageMeterSummaryDisplay .meter_summary:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	right: -1px;
+	top: 0px;
+	width: 1px;
+	height: 42px;
+	margin: 9px 0;
+	background-color: #00a1d2;
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.6);
+}
+
+.usageMeterSummaryDisplay .meter_summary:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 1px;
+	height: 42px;
+	margin: 9px 0;
+	background-color: #00526c;
+}
+
+.usageMeterSummaryDisplay .meter_summary_title {
+	font-size: 12px;
+	display: inline-block;
+	line-height: 14px; 
+	text-align: left;
+}
+
+.usageMeterSummaryDisplay .meter_summary_value {
+	font-size: 40px;
+	font-weight: 400;
+	display: inline-block;
+	line-height: 40px;
+}
+
+/* Turn OFF for desktop */
+.usage_calculator_overlay .mobile_only {
+	display: none;
+}
+
+.usage_calculator_overlay.is_mobile .mobile_only {
+	/* FIXME What about inline? */
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+	For the actual jQuery UI slider areas.
+*/
+
+.generic_usage_slider {
+	border-bottom: 1px solid #ccc;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding: 10px;
+}
+
+.generic_usage_slider:last-child {
+	border: 0;
+}
+
+.generic_usage_slider label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.generic_usage_slider .usageSlider {
+	margin-top: 2px;
+	width: 80%;
+	float: left;
+}
+
+.generic_usage_slider .variable_display {
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+
