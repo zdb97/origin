@@ -268,7 +268,8 @@
 			var data = this.model.toJSON(); 
 
 			this.$el.html(this.template(data));
-
+			this.$el.addClass(data.type);
+			
 			var $activities = this.$el.find('.activities');
 
 			$activities.empty();
@@ -359,7 +360,7 @@
 				// highlight selected device
 				if (data.device[i].className === data.deviceType) {
 					this.$el.find('li').eq(i).addClass('is-selected');
-					this.displayCalculator(data.device[i]);
+					this.displayCalculator(data.device[i], 'show');
 				} 
 			} 
 			
@@ -389,8 +390,8 @@
 	
 		deviceTypeClick: function (e) {
 			e.stopPropagation();
-			//highlight the clicked device  by changing its (li) class
 			
+			//highlight the clicked device
 			this.$el.find('li').removeClass('is-selected');
 			$(e.target).closest('li').addClass('is-selected');
 			
@@ -402,22 +403,39 @@
 			
 			var data = this.getModelData();
 			var currIndex = $(e.target).closest('li').attr('dataindex');
-			this.displayCalculator(data.device[currIndex]);
+			this.displayCalculator(data.device[currIndex], 'animate');
 		},
 		
-		displayCalculator: function (d) { 
-			if (d.voice === true) { 
-				$('.calculators .m-section').eq(0).slideDown(); 
+		displayCalculator: function (d, action) {
+			if (action === 'animate') {
+				if (d.voice === true) { 
+					$('.calculators .m-section.voice').slideDown(); 
+				}
+				else {
+					$('.calculators .m-section.voice').slideUp();
+				}
+				
+				if (d.data === true) {
+					$('.calculators .m-section.data').slideDown(); 
+				}
+				else {
+					$('.calculators .m-section.data').slideUp();
+				}
 			}
-			else {
-				$('.calculators .m-section').eq(0).slideUp();
-			}
-			
-			if (d.data === true) {
-				$('.calculators .m-section').eq(1).slideDown(); 
-			}
-			else {
-				$('.calculators .m-section').eq(1).slideUp();
+			else if (action === 'show') {
+				if (d.voice === true) { 
+					$('.calculators .m-section.voice').show(); 
+				}
+				else {
+					$('.calculators .m-section.voice').hide();
+				}
+				
+				if (d.data === true) {
+					$('.calculators .m-section.data').show(); 
+				}
+				else {
+					$('.calculators .m-section.data').hide();
+				}
 			}
 			
 			// display device suggestion 
@@ -623,11 +641,11 @@ var counterCookie = 'counterCookie';
 		$.cookie.json = true;
 		if($.cookie(sliderCookie) == null) { 
 			$.cookie(sliderCookie, []);
-			$.cookie(counterCookie, 0);  
+			$.cookie(counterCookie, 0); 
 		}
 		else { 
 			var counter = $.cookie(counterCookie) + 1;
-			$.cookie(counterCookie, counter); 
+			$.cookie(counterCookie, counter);
 		}
 		//console.log($.cookie(sliderCookie));
 		 
