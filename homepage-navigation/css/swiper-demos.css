@@ -1,15 +1,86 @@
 .swiper-partial {
-	width: 640px;
-	height: 250px;
-	color: #fff;
+	width: 100%;
+	height: 120px;
+	color: #fff; 
+	background: linear-gradient(top, #F7F7F7, #DFDFDF);
+	background: -webkit-linear-gradient(top, #F7F7F7, #DFDFDF); 
+	background: -moz-linear-gradient(top, #F7F7F7, #DFDFDF); 
+	background: -o-linear-gradient(top, #F7F7F7, #DFDFDF);
+	margin: 0 auto; 
+}
+.swiper-partial .swiper-wrapper  {
+	padding: 10px 0;
 }
 .swiper-partial .swiper-slide {
-	height: 250px;
-	width: 300px;
-	text-align: center;
-	line-height: 250px;
-	font-size: 40px;
+	/*border: 1px solid lime;		*/
+    color: teal;
+    font-size: 16px;
+    font-weight: 700;
+    height: 100px;
+    text-align: center;
+    width: 200px;
 }
+.swiper-partial .swiper-slide div {
+	border: 1px solid white;
+	border-radius: 5px;
+    height: 100px;
+    margin: 0 5px;
+    padding: 67px 0 0;
+    position: relative;
+	cursor: pointer;
+	background: linear-gradient(top, #FBFBFB, #F0F0F0);
+	background: -webkit-linear-gradient(top, #FBFBFB, #F0F0F0); 
+	background: -moz-linear-gradient(top, #FBFBFB, #F0F0F0); 
+	background: -o-linear-gradient(top, #FBFBFB, #F0F0F0);
+}
+.swiper-partial .swiper-slide div:active {
+	border: 4px solid teal;
+	border-radius: 5px;
+}
+.swiper-partial .swiper-slide:last-child  div{ 
+}
+.swiper-partial .swiper-slide div:before {
+	background-color: transparent;
+    background-image: url("../images/sprite_sml_v2.png");
+    background-repeat: no-repeat;
+    content: "";
+    height: 45px;
+    left: 50%;
+    margin-left: -27px;
+    margin-top: -30px;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+}
+.swiper-partial .swiper-slide.usage div:before {
+	background-position: -156px -30px;
+}
+.swiper-partial .swiper-slide.bill div:before {
+	background-position: -206px -30px;
+}
+.swiper-partial .swiper-slide.support div:before {
+	background-position: -258px -81px;
+}
+.swiper-partial .swiper-slide.phones div:before {
+	background-position: -306px -30px;
+}
+.swiper-partial .swiper-slide.network div:before {
+	background-position: -348px -30px;
+}
+.swiper-partial .swiper-slide.store div:before {
+	background-position: -397px -30px;
+}
+
+
+
+
+
+
+
+
+
+
+/* temp */
 .green-slide {
 	background: #49a430;
 }
