@@ -29,7 +29,8 @@ SwipePlans.prototype = {
         if ($this.is(':visible')) {
 
             window.planSwipe = new Swipe($this.get(0), {
-                // startSlide: 4,
+                 startSlide: 4,
+				 disableScroll: true,
                 // auto: 3000,
                 // continuous: true,
                 // disableScroll: true,
