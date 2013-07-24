@@ -1,0 +1,118 @@
+body {
+	margin-top: 0;
+}
+
+#usageCalculatorApp .usageMeterSummaryDisplay {
+	top: 0;
+}
+
+.calcSummaryTongue {
+	position: fixed;
+	height: 65px;
+	top: 56px;
+	z-index: 998;
+	width: 100%;
+	left: 0;
+	right: 0;
+	background-color: #004d64;
+	transition-duration: 200ms;
+	-ms-transition-duration: 200ms;
+	-webkit-transition: 200ms;	
+	display: table;
+}
+
+	.calcSummaryTongue.show-panel { 
+		transform: translateY(0px);
+		-moz-transform: translateY(0px);
+		-ms-transform: translateY(0px);
+		-webkit-transform: translate(0px, 0px) translateZ(0px);
+		
+	}	
+	.calcSummaryTongue.show-panel:after  {
+		position: absolute;
+		left: 50%;
+		bottom: -10px;
+		border: 5px solid transparent;
+		border-top: 5px solid #009DC4;
+		margin-left: -5px;
+	}
+		
+	.calcSummaryTongue.hide-panel {	
+		transform: translateY(-55px);
+		-moz-transform: translateY(-55px);
+		-ms-transform: translateY(-37px);
+		-webkit-transform: translate(0px, -55px) translateZ(0px);
+	}
+
+	.calcSummaryTongue.hide-panel:after  {
+		position: absolute;
+		left: 50%;
+		bottom: -6px;
+		border: 5px solid transparent;
+		border-bottom: 5px solid #009DC4;
+		margin-left: -5px;
+	}
+	
+	.calcSummaryTongue:before {
+		position: absolute;
+		left: 50%;
+		bottom: -10px;
+		width: 60px;
+		height: 20px;
+		margin-left: -30px;
+		background-color: #004d64;
+		border-radius: 0 0 10px 10px;
+	}	
+			
+	.calcSummaryTongue:before, .calcSummaryTongue:after {
+		content: "";
+		display: table;
+		clear: both;
+	}	
+
+	/*-------------------------------*/
+	.calcSummaryTongue {
+		font-size: 14px;
+		color: #0099C3;
+	}
+	
+	.calcSummaryTongue a.back {
+		position: absolute;
+		top: 20px;
+		left: 50%;
+		margin-left: -104px;
+		cursor: pointer;
+	}
+		.calcSummaryTongue a.back:after {
+			content: "";
+			display: table;
+			clear: both;
+
+			background: url(../../images/sprite.png) no-repeat -376px -51px transparent;
+			position: absolute;
+			width: 26px;
+			height: 26px;
+			top: -2px;
+			left: -29px;
+		}
+	
+	.calcSummaryTongue a.calcReset {
+		position: absolute;
+		top: 20px;
+		left: 50%;
+		margin-left: 55px;
+		cursor: pointer;
+	}
+		.calcSummaryTongue a.calcReset:after {
+			content: "";
+			display: table;
+			clear: both;
+
+			background: url(../../images/sprite.png) no-repeat -409px -49px transparent;
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			top: -2px;
+			left: -37px;
+		}
+	

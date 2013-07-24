@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>Usage Calculator</title> 
+		
+		<!-- base css grabbed from optus mobile site -->
+		<link href="css/app/base.css" rel="stylesheet">  
+		<!-- addtional css for summary sliding panel -->
+		<link href="css/app/panel.css?v=11" rel="stylesheet"> 
+		
+		<script src="js/lib/jquery-1.9.1.js"></script>
+		<script src="js/lib/underscore-backbone.js"></script>
+	</head>
+
+	<body>
+ 
+	<div id="body">
+   	<div id="primaryContent" class="calculatorPage">
+   
+		<!-- backbone app container -->
+		<div id="usageCalculatorApp">
+				
+			<!-- Container for all the actual usage calculators -->
+			<div class="calculators">
+				<!-- Backbone -->
+			</div>
+			  
+			<!-- CSS fixes this at bottom -->
+			<div class="usageMeterSummaryDisplay">
+				<!-- Backbone -->
+			</div>
+			<div class="calcSummaryTongue">
+				<!-- Backbone -->
+				<a class="back" href="#">back to plans</a>
+				<a class="calcReset">reset the plan</a>
+			</div>
+
+		</div>
+	</div>
+	</div>
+
+	<!-- Individual activity in pillbox form -->
+	<script id="usageCalculatorActivityPillboxTemplate" type="text/template">
+			<div class="activities-itemTitle <%= unit %>"><%= title %></div>
+			<div class="pillButtons calc">
+				<% for (var i = 0; i < steps.length; i++) { %>
+					<a class="<%= selectedStep === steps[i] ? 'is-active' : '' %>" href="#" data-val="<%= steps[i] %>"><%= steps[i] %></a>
+				<% } %>
+			</div>
+			<div class="hidden-msg">
+				Please make a selection
+			</div>
+		</script>
+
+	<!-- Individual calculator -->
+	<script id="usageCalculatorTemplate" type="text/template">
+			<div class="control_block">
+				<h2 class="h2"><%= title %><span><%= period %></span></h2>
+				<input type="hidden" class="usage_frequency" value="day">
+				<div class="activities">
+					<!-- populated via backbone -->
+				</div>
+			</div>
+		</script>
+
+	<!-- Represents a "summary" element for a given calculator -->
+	<script id="calculatorSummaryViewTemplate" type="text/template">
+		<div class="meter_summary_value">
+				<%= amount %>
+			</div>
+		<div class="meter_summary_title">
+			<div class="unit"><%= unit %>/</div>
+			<div class="cycle"><%= title %></div>
+		</div> 
+	</script>
+
+	
+	<script src="js/app/usageCalculatorAppDataMobile.js"></script>
+	<script src="js/app/bbUsageCalculatorApp.js"></script>
+	<script src="js/app/calcTongue.js"></script>
+
+	</body>
+</html>
+
+
