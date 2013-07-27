@@ -175,8 +175,9 @@ var usageCalculatorCollection = null;
 		className: 'activities-itemContainer',
 
 		events: {
-			// TODO Consider using touchend?
-			'click .pillButtons a': 'handlePillboxClick'
+			// ignore 'click' event as it's for touch devices only			(zidan)
+			'touchstart .pillButtons a': 'handlePillboxClick',
+			'MSPointerDown .pillButtons a': 'handlePillboxClick'
 		},
 
 		initialize: function (options) {
@@ -189,11 +190,16 @@ var usageCalculatorCollection = null;
 			var data = this.model.toJSON();
 			this.$el.html(this.template(data));
 			
-			$('.calcReset').on('touchstart MSPointerDown', {me: this}, this.handleResetClick);
-			$('.calcReset').on('mousedown', {me: this}, this.handleResetClick);
+			$('a.calcReset').on('touchstart MSPointerDown', {me: this}, this.handleResetClick);
+			$('a.calcReset').on('mousedown', {me: this}, this.handleResetClick);
+			$('a.back').on('touchstart MSPointerDown', {me: this}, this.handleBackButtonClick);	//(zidan)
 			
 			// Return this to enable chained calls.
 			return this;
+		},
+		
+		handleBackButtonClick: function (e) {
+			window.location.href = "//www.google.com";
 		},
 		
 		// this is not optimal, any better approach ??
