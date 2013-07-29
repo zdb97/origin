@@ -190,16 +190,23 @@ var usageCalculatorCollection = null;
 			var data = this.model.toJSON();
 			this.$el.html(this.template(data));
 			
-			$('a.calcReset').on('touchstart MSPointerDown', {me: this}, this.handleResetClick);
-			$('a.calcReset').on('mousedown', {me: this}, this.handleResetClick);
-			$('a.back').on('touchstart MSPointerDown', {me: this}, this.handleBackButtonClick);	//(zidan)
+			// if touch is detected
+			if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)) {
+			    $('.calcReset').on('touchstart MSPointerDown', {me: this}, this.handleResetClick);	
+			    $('.back').on('touchstart MSPointerDown', {me: this}, this.handleBackButtonClick);
+			}
+			// non-touch screen
+			else {
+			    $('.calcReset').on('click', {me: this}, this.handleResetClick);
+			    $('.back').on('click', {me: this}, this.handleBackButtonClick);
+			}
 			
 			// Return this to enable chained calls.
 			return this;
 		},
 		
 		handleBackButtonClick: function (e) {
-			window.location.href = "//www.google.com";
+			window.location.href =  e.target.href;
 		},
 		
 		// this is not optimal, any better approach ??
