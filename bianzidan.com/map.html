@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>map</title> 
+		<!-- addtional css for summary sliding panel -->
+		<link href="css/style.css?v=1" rel="stylesheet"> 
+		
+		<script src="js/lib/jquery-1.10.2.min.js"></script>
+		<script src="js/lib/underscore-min.js"></script>
+		<script src="js/lib/backbone-min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script> 
+	</head>
+
+	<body class="map">
+		
+		<input id="searchTextField" type="text" placeholder="enter a location" size="50">
+		<input type="button" value="go" />
+		
+		<div id="map-canvas" class="map-canvas"></div> 
+		
+		
+		<ul class="place-list">
+			<!-- backbone template -->
+		</ul>
+		
+		
+		
+		
+		<script type="text/html" id="place-item">
+			<li>
+				<div><%= city %></div>
+				<div><%= country %></div>
+				<div><%= time_of_arrival %></div>
+			</li>
+		</script>
+		
+		
+		<script src="js/custom/map.js"></script>
+	</body>
+</html>	
+	

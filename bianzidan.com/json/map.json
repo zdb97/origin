@@ -1,0 +1,28 @@
+ {
+    "places": [
+        {
+            "city": 			"Sydney",
+			"lat": 				"-33.8688",
+			"lon": 				"151.2195",
+			"Country": 			"Australia",
+			"time_of_arrival":	"2002/04",
+			"image":			""
+        },
+		{
+            "city": 			"Melbourne",
+			"lat": 				"-37.8149",
+			"lon": 				"144.9588",
+			"Country": 			"Australia",
+			"time_of_arrival":	"2010/09",
+			"image":			""
+        },
+        {
+            "city": 			"Paris",
+			"lat": 				"",
+			"lon": 				"",
+			"Country": 			"France",
+			"time_of_arrival":	"2012/01",
+			"image":			""
+        }
+    ]
+}
