@@ -24,6 +24,8 @@
 		
 		
 		<ul class="place-list">
+			<input class="mapLink" type="button" value="test"  />
+			<a href="#" id="mapLink">test</a>
 			<!-- backbone template -->
 		</ul>
 		
@@ -32,9 +34,10 @@
 		
 		<script type="text/html" id="place-item">
 			<li>
-				<div><%= city %></div>
-				<div><%= country %></div>
-				<div><%= time_of_arrival %></div>
+				<div>City: <%= city %></div>
+				<div>Country: <%= country %></div>
+				<div>Time of arrival: <%= time_of_arrival %></div>
+				<input class="mapLink" type="button" value="get me there!" />
 			</li>
 		</script>
 		

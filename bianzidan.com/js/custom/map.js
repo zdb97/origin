@@ -36,7 +36,10 @@
 			this.on("reset", this.resetModel, this);
 		},
 		
-		// 
+		/* 
+		 * parse is called by Backbone whenever a collection's models are returned by the server, in fetch
+		 * The function is passed the raw response object, and should return the array of model attributes to be added to the collection.
+		 */
 		parse: function (response) {
 			return response.places;
 		},
@@ -62,7 +65,12 @@
 	 var placeListView = Backbone.View.extend({
 		template: _.template($("#place-item").html()),
 		
+		events: {
+			"click #mapLinks": "listItemClick"
+		}, 
+		
 		initialize: function (options){
+			//this.setElement($('ul.place-list'));
 			console.log("place view initialized");
 			
 			this.collection = options.collection; 
@@ -79,6 +87,12 @@
 					console.log("fetch json url： ", collection);
 					
 					self.addCollectionDataToTemplate();
+					
+					var mapview = new mapView({
+						collection: collection,
+						el: "div#map-canvas",
+						inputField: "#searchTextField"
+					});
 				},
 				error: function () {
 					console.error("fetching error....");
@@ -98,6 +112,10 @@
 			
 			self.$el.append(html);
 		},
+		
+		listItemClick: function () {
+			console.log("qwerty");
+		}
 	 });
 	 
 	 /*
@@ -115,16 +133,29 @@
 		},
 		
 		render: function () {
+			var myPosition = new google.maps.LatLng(this.collection.models[0].toJSON().lat, this.collection.models[0].toJSON().lon);
+		
 			var mapOptions = {
 				//FIXME
-				//center: new google.maps.LatLng(this.collection.models[0].toJSON().lat, this.collection.models[0].toJSON().lon),
-				center: new google.maps.LatLng(-33.8688, 151.2195),
+				center: myPosition,
 				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			  };
 			
+			// google map object
 			var map = new google.maps.Map(this.$el.get(0), mapOptions);
 		 
+			// google map marker
+			// FIXME, not displaying???
+			var myPosition = new google.maps.LatLng()
+			var marker = new google.maps.Marker({
+				position: myPosition,
+				map: map,
+				title: this.collection.models[0].get("city")
+			});
+			console.log("marker: ", marker);
+		 
+			// google auto complete 
 			var input = $(this.inputField).get(0);
 			var autocompleteOptions = {
 				types: ['(cities)'],
@@ -150,13 +181,6 @@
 		collection: dataCollection,
 		el: "ul.place-list"
 	});
-	
-	var mapview = new mapView({
-		collection: dataCollection,
-		el: "div#map-canvas",
-		inputField: "#searchTextField"
-	});
-	
 	
 	
 	
