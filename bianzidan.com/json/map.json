@@ -6,7 +6,8 @@
 			"lon": 				"151.2195",
 			"Country": 			"Australia",
 			"time_of_arrival":	"2002/04",
-			"image":			""
+			"image":			"",
+			"show_on_map":		"false"
         },
 		{
             "city": 			"Melbourne",
@@ -14,15 +15,17 @@
 			"lon": 				"144.9588",
 			"Country": 			"Australia",
 			"time_of_arrival":	"2010/09",
-			"image":			""
+			"image":			"",
+			"show_on_map":		"false"
         },
         {
             "city": 			"Paris",
-			"lat": 				"",
-			"lon": 				"",
+			"lat": 				"48.85661",
+			"lon": 				"2.35222",
 			"Country": 			"France",
 			"time_of_arrival":	"2012/01",
-			"image":			""
+			"image":			"",
+			"show_on_map":		"true"
         }
     ]
 }

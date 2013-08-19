@@ -66,7 +66,7 @@
 		template: _.template($("#place-item").html()),
 		
 		events: {
-			"click #mapLinks": "listItemClick"
+			"click .mapLink": "listItemClick"
 		}, 
 		
 		initialize: function (options){
@@ -88,6 +88,7 @@
 					
 					self.addCollectionDataToTemplate();
 					
+					//FIXME
 					var mapview = new mapView({
 						collection: collection,
 						el: "div#map-canvas",
@@ -115,6 +116,10 @@
 		
 		listItemClick: function () {
 			console.log("qwerty");
+			//   MyMap.map.setCenter(new google.maps.LatLng( 45, 19 ) );
+			//new google.maps.setCenter(this.$el.get(0), mapOptions);
+			// mapView.setmap;
+			
 		}
 	 });
 	 
@@ -133,10 +138,9 @@
 		},
 		
 		render: function () {
-			var myPosition = new google.maps.LatLng(this.collection.models[0].toJSON().lat, this.collection.models[0].toJSON().lon);
+			var myPosition = new google.maps.LatLng(this.getDisplayModel().toJSON().lat, this.getDisplayModel().toJSON().lon);
 		
 			var mapOptions = {
-				//FIXME
 				center: myPosition,
 				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -167,6 +171,14 @@
 			google.maps.event.addListener(autocomplete, 'place_changed', this.changeLocation);
 		},
 		
+		getDisplayModel: function () {
+		    return _.find(this.collection.models, function (model, index) {
+				console.log(model.toJSON());
+				
+				return (model.get("show_on_map") === "true");
+			});
+		},
+		
 		changeLocation: function () {
 			console.log("loc change");
 		}
@@ -181,9 +193,6 @@
 		collection: dataCollection,
 		el: "ul.place-list"
 	});
-	
-	
-	
 	
 	
 	
