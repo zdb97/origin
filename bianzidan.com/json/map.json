@@ -3,7 +3,7 @@
         {
             "city": 			"Sydney",
 			"lat": 				"-33.8688",
-			"lon": 				"151.2195",
+			"lng": 				"151.2195",
 			"Country": 			"Australia",
 			"time_of_arrival":	"2002/04",
 			"image":			"",
@@ -12,20 +12,74 @@
 		{
             "city": 			"Melbourne",
 			"lat": 				"-37.8149",
-			"lon": 				"144.9588",
+			"lng": 				"144.9588",
 			"Country": 			"Australia",
 			"time_of_arrival":	"2010/09",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Wuhan",
+			"lat": 				"30.59310",
+			"lng": 				"114.30539",
+			"Country": 			"China",
+			"time_of_arrival":	"1984/01",
+			"image":			"",
+			"show_on_map":		"true"
+        },
+		{
+            "city": 			"Singapore",
+			"lat": 				"1.27989",
+			"lng": 				"103.84621",
+			"Country": 			"Singapore",
+			"time_of_arrival":	"2012/10",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Hong Kong",
+			"lat": 				"22.27925",
+			"lng": 				"114.17404",
+			"Country": 			"China",
+			"time_of_arrival":	"2006/02",
 			"image":			"",
 			"show_on_map":		"false"
         },
         {
             "city": 			"Paris",
 			"lat": 				"48.85661",
-			"lon": 				"2.35222",
+			"lng": 				"2.35222",
 			"Country": 			"France",
 			"time_of_arrival":	"2012/01",
 			"image":			"",
 			"show_on_map":		"true"
+        },
+		{
+            "city": 			"Rome",
+			"lat": 				"41.89292",
+			"lng": 				"12.48252",
+			"Country": 			"Italy",
+			"time_of_arrival":	"2012/01",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Florence",
+			"lat": 				"43.77103",
+			"lng": 				"11.24800",
+			"Country": 			"Italy",
+			"time_of_arrival":	"2012/01",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Milan",
+			"lat": 				"45.46545",
+			"lng": 				"9.18652",
+			"Country": 			"Italy",
+			"time_of_arrival":	"2012/01",
+			"image":			"",
+			"show_on_map":		"false"
         }
     ]
 }
