@@ -71,9 +71,10 @@
 		
 		initialize: function (options){
 			//this.setElement($('ul.place-list'));
-			console.log("place view initialized");
+			console.log("place view initialized: ", options);
 			
 			this.collection = options.collection; 
+			this.map = options.map;
 			this.el = options.el;
 			this.render();
 		},
@@ -86,14 +87,9 @@
 				success: function (collection, response) {
 					console.log("fetch json url： ", collection);
 					
+					// add data collection to view template
 					self.addCollectionDataToTemplate();
-					
-					//FIXME
-					var mapview = new mapView({
-						collection: collection,
-						el: "div#map-canvas",
-						inputField: "#searchTextField"
-					});
+					self.map.render();
 				},
 				error: function () {
 					console.error("fetching error....");
@@ -114,12 +110,8 @@
 			self.$el.append(html);
 		},
 		
-		listItemClick: function () {
-			console.log("qwerty");
-			//   MyMap.map.setCenter(new google.maps.LatLng( 45, 19 ) );
-			//new google.maps.setCenter(this.$el.get(0), mapOptions);
-			// mapView.setmap;
-			
+		listItemClick: function (e) {
+			this.map.setMapCenter([$(e.target).attr("lat"), $(e.target).attr("lng")]);
 		}
 	 });
 	 
@@ -127,6 +119,8 @@
 	  * map view
 	  */
 	var mapView = Backbone.View.extend({
+	
+		map: null,
 		
 		initialize: function (options) {	
 			console.log("mapView initialized"); 
@@ -134,11 +128,11 @@
 			this.collection = options.collection; 
 			this.el = options.el;
 			this.inputField = options.inputField;
-			this.render();  
+			//this.render();  
 		},
 		
 		render: function () {
-			var myPosition = new google.maps.LatLng(this.getDisplayModel().toJSON().lat, this.getDisplayModel().toJSON().lon);
+			var myPosition = new google.maps.LatLng(this.getDisplayModel().toJSON().lat, this.getDisplayModel().toJSON().lng);
 		
 			var mapOptions = {
 				center: myPosition,
@@ -147,14 +141,14 @@
 			  };
 			
 			// google map object
-			var map = new google.maps.Map(this.$el.get(0), mapOptions);
+			this.map = new google.maps.Map(this.$el.get(0), mapOptions);
 		 
 			// google map marker
 			// FIXME, not displaying???
 			var myPosition = new google.maps.LatLng()
 			var marker = new google.maps.Marker({
 				position: myPosition,
-				map: map,
+				map: this.map,
 				title: this.collection.models[0].get("city")
 			});
 			console.log("marker: ", marker);
@@ -169,6 +163,8 @@
 
 			//autocomplete.bindTo('bounds', map);
 			google.maps.event.addListener(autocomplete, 'place_changed', this.changeLocation);
+			
+			return this;
 		},
 		
 		getDisplayModel: function () {
@@ -179,8 +175,9 @@
 			});
 		},
 		
-		changeLocation: function () {
-			console.log("loc change");
+		setMapCenter: function (latlng) {
+			this.map.setCenter(new google.maps.LatLng(latlng[0], latlng[1]));
+			console.log("map center: ", this.map.getCenter());
 		}
 	});
 	
@@ -189,8 +186,15 @@
 	// controllers
 	var dataCollection = new placeCollection();
 	
+	var mapview = new mapView({
+		collection: dataCollection,
+		el: "div#map-canvas",
+		inputField: "#searchTextField"
+	});
+	
 	var placelistview = new placeListView({
 		collection: dataCollection,
+		map: mapview,
 		el: "ul.place-list"
 	});
 	
@@ -208,7 +212,9 @@ function  initialize() {
   
 //google.maps.event.addDomListener(window, 'load', initialize); 	
 	
-	
+/*
+	google map api: https://developers.google.com/maps/documentation/javascript/reference?csw=1#ComponentRestrictions
+*/	
 	
 	 
 	

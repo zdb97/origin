@@ -2,3 +2,12 @@ body.map  #map-canvas{
 	width: 100%;	
 	height: 300px;
 }
+
+.map .place-list {
+	
+}
+
+.map .place-list li{
+	display: inline-block;
+	padding: 5px 10px;
+}
