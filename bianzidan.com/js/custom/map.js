@@ -9,14 +9,15 @@
 		defaults: {
 			city: 	"",
 			lat: 	"",
-			lon: 	"",
-			time_of_arrival:	"",
+			lng: 	"",
+			time_of_first_arrival:	"",
 			country:	"",
-			image: 	""
+			image: 	"",
+			index: ""
 		},
 		
 		initialize: function () {
-			console.log('placeModel loaded: ', this.toJSON());
+			console.log('placeModel initialized: ', this.toJSON());
 		}
 	});
 
@@ -29,7 +30,7 @@
 		url: "json/map.json",	// url ralative to html page
 		
 		initialize: function () {
-			console.log('placeCollection loaded'); 
+			console.log('placeCollection initialized'); 
 			
 			this.on("add", this.addModel, this);
 			this.on("remove", this.removeModel, this);
@@ -45,7 +46,6 @@
 		},
 		
 		addModel: function () {
-			console.log("placeCollection model added, models count: ", this.models.length);
 		},
 		
 		removeModel: function () {
@@ -104,6 +104,9 @@
 			var html = "";
 			
 			_.each(self.collection.models, function(model, index) {
+				// set index value of model at run time
+				model.set({index: self.collection.indexOf(model)});
+			
 				html += self.template(model.toJSON());
 			});
 			
@@ -111,7 +114,8 @@
 		},
 		
 		listItemClick: function (e) {
-			this.map.setMapCenter([$(e.target).attr("lat"), $(e.target).attr("lng")]);
+			//this.map.setMapCenter([$(e.target).attr("lat"), $(e.target).attr("lng")]);
+			this.map.setMapCenter($(e.target).attr("index"));
 		}
 	 });
 	 
@@ -122,38 +126,33 @@
 	
 		map: null,
 		
+		//constant
+		ZOOM: 12,
+		
 		initialize: function (options) {	
-			console.log("mapView initialized"); 
+			console.log("map view initialized."); 
 			 
 			this.collection = options.collection; 
 			this.el = options.el;
 			this.inputField = options.inputField;
-			//this.render();  
 		},
 		
 		render: function () {
-			var myPosition = new google.maps.LatLng(this.getDisplayModel().toJSON().lat, this.getDisplayModel().toJSON().lng);
-		
+			var myPosition = new google.maps.LatLng(parseFloat(this.getDisplayModel().toJSON().lat), parseFloat(this.getDisplayModel().toJSON().lng));
+			
 			var mapOptions = {
 				center: myPosition,
-				zoom: 12,
+				zoom: this.ZOOM,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			  };
 			
-			// google map object
+			//initialize google map
 			this.map = new google.maps.Map(this.$el.get(0), mapOptions);
-		 
-			// google map marker
-			// FIXME, not displaying???
-			var myPosition = new google.maps.LatLng()
-			var marker = new google.maps.Marker({
-				position: myPosition,
-				map: this.map,
-				title: this.collection.models[0].get("city")
-			});
-			console.log("marker: ", marker);
+			// initialize google map marker
+			this.addMarkerToMap(myPosition);
 		 
 			// google auto complete 
+			/*
 			var input = $(this.inputField).get(0);
 			var autocompleteOptions = {
 				types: ['(cities)'],
@@ -163,21 +162,31 @@
 
 			//autocomplete.bindTo('bounds', map);
 			google.maps.event.addListener(autocomplete, 'place_changed', this.changeLocation);
-			
+			*/
 			return this;
+		},
+		
+		addMarkerToMap: function (position) {
+			var marker = new google.maps.Marker({
+				position: position,
+				map: this.map,
+				title: this.collection.models[0].get("city")
+			});
 		},
 		
 		getDisplayModel: function () {
 		    return _.find(this.collection.models, function (model, index) {
-				console.log(model.toJSON());
-				
 				return (model.get("show_on_map") === "true");
 			});
 		},
 		
-		setMapCenter: function (latlng) {
-			this.map.setCenter(new google.maps.LatLng(latlng[0], latlng[1]));
-			console.log("map center: ", this.map.getCenter());
+		setMapCenter: function (index) {
+			var lat = this.collection.models[index].get("lat");
+			var lng = this.collection.models[index].get("lng");
+			var myPosition = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+			
+			this.map.setCenter(myPosition);
+			this.addMarkerToMap(myPosition);
 		}
 	});
 	
@@ -200,24 +209,9 @@
 	
 	
 	
-	
-/*
- * google map functions
- */ 
-function  initialize() {
-	 
-}
-
- 
-  
-//google.maps.event.addDomListener(window, 'load', initialize); 	
-	
 /*
 	google map api: https://developers.google.com/maps/documentation/javascript/reference?csw=1#ComponentRestrictions
 */	
-	
-	 
-	
 }(window));
 
 

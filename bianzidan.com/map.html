@@ -16,10 +16,10 @@
 	</head>
 
 	<body class="map">
-		
+		<!--
 		<input id="searchTextField" type="text" placeholder="enter a location" size="50">
 		<input type="button" value="go" />
-		
+		-->
 		<div id="map-canvas" class="map-canvas"></div> 
 		
 		
@@ -32,7 +32,7 @@
 				<div>City: <%= city %></div>
 				<div>Country: <%= country %></div>
 				<div>Time of first arrival: <%= time_of_first_arrival %></div>
-				<input class="mapLink" type="button" lat="<%= lat %>" lng="<%= lng %>" value="get me there!" />
+				<input class="mapLink" type="button" index=<%=index %> lat="<%= lat %>" lng="<%= lng %>" value="get me there!" />
 			</li>
 		</script>
 		
