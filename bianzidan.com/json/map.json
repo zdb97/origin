@@ -7,7 +7,7 @@
 			"country": 			"Australia",
 			"time_of_first_arrival":	"2002/04",
 			"image":			"",
-			"show_on_map":		"false"
+			"show_on_map":		"true"
         },
 		{
             "city": 			"Melbourne",
@@ -25,7 +25,7 @@
 			"country": 			"China",
 			"time_of_first_arrival":	"1984/01",
 			"image":			"",
-			"show_on_map":		"true"
+			"show_on_map":		"false"
         },
 		{
             "city": 			"Singapore",
@@ -52,7 +52,7 @@
 			"country": 			"France",
 			"time_of_first_arrival":	"2012/01",
 			"image":			"",
-			"show_on_map":		"true"
+			"show_on_map":		"false"
         },
 		{
             "city": 			"Rome",
