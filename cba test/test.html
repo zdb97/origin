@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>test - ZIDAN</title> 
+	
+		<script src="scripts/jquery-1.10.2.min.js"></script>
+		<script src="scripts/underscore-min.js"></script>
+		<script src="scripts/backbone-min.js"></script>
+		
+		<!-- custom foundation package, only grid is used -->
+		<link href="stylesheets/foundation.min.css" rel="stylesheet"> 
+		<link href="stylesheets/style.css?v=1" rel="stylesheet"> 
+	</head>
+	
+	<body>
+		
+		<h1>Profile Browser</h1>
+	
+		<div class="container row">
+			<ul class="tabs large-3 small-3 columns">
+				<!-- backbone template -->
+			</ul>
+			<ul class="contents large-9 small-12 columns">
+				<!-- backbone template -->
+			</ul>
+		</div>
+		
+	
+		<script type="text/html" id="profile-tab">
+			<li class="<%= selected %>" index="<%= id %>">
+				<%= firstName %> <%= lastName %>
+			</li>
+		</script>
+		
+		<script type="text/html" id="profile-content">
+			<li class="<%= selected %>">
+				<div class="title" index="<%= id %>"><%= firstName %> <%= lastName %></div>
+				
+				<div class="details <%= selected %>">
+					<div class="image">
+						<img src="<%= picture %>" alt="<%= firstName %> <%= lastName %>" />
+					</div>
+					<h3><%= firstName %> <%= lastName %></h3>
+					<div class="bio"><%= bio %></div>
+				</div>
+			</li>
+		</script>
+		
+	
+		<script src="scripts/data.js"></script>
+		<script src="scripts/main.js"></script>
+	</body>
+</html>	
+	
