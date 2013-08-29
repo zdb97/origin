@@ -13,7 +13,8 @@
 			time_of_first_arrival:	"",
 			country:	"",
 			image: 	"",
-			index: ""
+			index: "",
+			show_on_map: ""
 		},
 		
 		initialize: function () {
@@ -113,9 +114,29 @@
 			self.$el.append(html);
 		},
 		
+		getDisplayModel: function () {
+		    return _.find(this.collection.models, function (model, index) {
+				return (model.get("show_on_map") === "true");
+			});
+		},
+		
+		getClickModel: function (e) {
+			 return _.find(this.collection.models, function (model, index) {
+				return (parseInt(model.get("index")) === parseInt($(e.target).attr("index")));
+			});
+		},
+		
+		updateModels: function (currentDisplayModel, clickModel) {
+			clickModel.set("show_on_map", "true");
+			currentDisplayModel.set("show_on_map", "false");
+		},
+		
 		listItemClick: function (e) {
-			//this.map.setMapCenter([$(e.target).attr("lat"), $(e.target).attr("lng")]);
-			this.map.setMapCenter($(e.target).attr("index"));
+			var currentDisplayModel = this.getDisplayModel();
+			var clickModel = this.getClickModel(e);
+			this.updateModels(currentDisplayModel, clickModel);
+			
+			this.map.render();
 		}
 	 });
 	 
@@ -137,8 +158,9 @@
 			this.inputField = options.inputField;
 		},
 		
-		render: function () {
-			var myPosition = new google.maps.LatLng(parseFloat(this.getDisplayModel().toJSON().lat), parseFloat(this.getDisplayModel().toJSON().lng));
+		render: function () { //console.log('render');
+			var currentDisplayModel = this.getDisplayModel();
+			var myPosition = new google.maps.LatLng(parseFloat(currentDisplayModel.toJSON().lat), parseFloat(currentDisplayModel.toJSON().lng));
 			
 			var mapOptions = {
 				center: myPosition,
@@ -166,20 +188,6 @@
 			return this;
 		},
 		
-		addMarkerToMap: function (position) {
-			var marker = new google.maps.Marker({
-				position: position,
-				map: this.map,
-				title: this.collection.models[0].get("city")
-			});
-		},
-		
-		getDisplayModel: function () {
-		    return _.find(this.collection.models, function (model, index) {
-				return (model.get("show_on_map") === "true");
-			});
-		},
-		
 		setMapCenter: function (index) {
 			var lat = this.collection.models[index].get("lat");
 			var lng = this.collection.models[index].get("lng");
@@ -187,6 +195,22 @@
 			
 			this.map.setCenter(myPosition);
 			this.addMarkerToMap(myPosition);
+		},
+		
+		addMarkerToMap: function (position) {
+			var currentDisplayModel = this.getDisplayModel();
+			
+			var marker = new google.maps.Marker({
+				position: position,
+				map: this.map,
+				title: currentDisplayModel.toJSON().city
+			});
+		},
+		
+		getDisplayModel: function () { 
+		    return _.find(this.collection.models, function (model, index) {
+				return (model.get("show_on_map") === "true");
+			});
 		}
 	});
 	
