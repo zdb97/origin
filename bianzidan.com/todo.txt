@@ -1,7 +1,8 @@
 map todo:
 
-1. map marker					x
-2. responsive css
-3. optimize loading / cdn
+1. map marker							[DONE]
+2. responsive css with foundation
+3. optimize loading / cdn				[DONE]
 4. list item image
 5. require.js
+6. info box
