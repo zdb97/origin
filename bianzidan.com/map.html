@@ -22,7 +22,14 @@
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
 		-->
-		<script data-main="js/custom/config" src="js/lib/require.js"></script> 	
+		<script src="js/lib/require.js"></script> 	
+		<script>
+			require(['js/custom/config'], function (config) {
+				// Load the main app module to start the app
+				// example: https://github.com/requirejs/example-jquery-cdn
+				requirejs(["custom/main"]);
+			});
+		</script>
 		
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script> 
 	</head>

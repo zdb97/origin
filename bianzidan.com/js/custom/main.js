@@ -13,9 +13,6 @@ define(
 			console.log(num);
 			$("body").prepend(num + "<br/>");
 		})
-		
-		
-		
 });
 
 
