@@ -1,10 +1,13 @@
-(function (window, undefined) {
-
-	var $ = window.jQuery;
+define(
+	[
+		"jquery", 
+		"underscore", 
+		"backbone", 
+		"async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
+	], 
+	function($, _, Backbone) {
 	
-	/*
-	 * place model
-	 */
+		
 	var placeModel =  Backbone.Model.extend({
 		defaults: {
 			city: 	"",
@@ -214,8 +217,6 @@
 		}
 	});
 	
-	 
-	
 	// controllers
 	var dataCollection = new placeCollection();
 	
@@ -230,12 +231,11 @@
 		map: mapview,
 		el: "ul.place-list"
 	});
-	
-	
-	
-/*
-	google map api: https://developers.google.com/maps/documentation/javascript/reference?csw=1#ComponentRestrictions
-*/	
-}(window));
+		
+});
+
+
+
+
 
 

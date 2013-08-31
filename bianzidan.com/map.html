@@ -2,36 +2,27 @@
 <html lang="en">
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		
 		<title>Zidan Bian's map. 卞紫丹的地图</title> 
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Zidan Bian's map. 卞紫丹的地图" />
 		<meta name="description" content="Zidan Bian's online space, blog and everything of me. 卞紫丹" />
 		<meta name="author" content="Zidan Bian. 卞紫丹" />
 		
+		<!-- custom foundation package: grid/typography -->
+		<link href="css/foundation.min.css" rel="stylesheet"> 
+		<link href="css/normalize.css" rel="stylesheet"> 
 		<link href="css/style.css?v=1" rel="stylesheet"> 
-		<!-- 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
-	
-		<script src="js/lib/jquery-1.10.2.min.js"></script>
-		<script src="js/lib/underscore-min.js"></script>
-		<script src="js/lib/backbone-min.js"></script>
-		-->
+		
 		<script src="js/lib/require.js"></script> 	
 		<script>
-			require(['js/custom/config'], function (config) {
+			require(['js/custom/require-config'], function (config) {
 				// Load the main app module to start the app
 				// example: https://github.com/requirejs/example-jquery-cdn
-				requirejs(["custom/main"]);
+				requirejs(["custom/map"]);
 			});
 		</script>
-		
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script> 
 	</head>
 
 	<body class="map">
@@ -39,24 +30,25 @@
 		<input id="searchTextField" type="text" placeholder="enter a location" size="50">
 		<input type="button" value="go" />
 		-->
-		<div id="map-canvas" class="map-canvas"></div> 
 		
-		
-		<ul class="place-list">
-			<!-- backbone template -->
-		</ul>
+		<div class="row">			
+
+			<div class="columns large-4">
+				<ul class="place-list row">
+					<!-- backbone template -->
+				</ul>
+			</div>
+			
+			<div id="map-canvas" class="map-canvas columns large-8"></div> 
+		</div>
 		
 		<script type="text/html" id="place-item">
-			<li>
-				<div>City: <%= city %></div>
-				<div>Country: <%= country %></div>
-				<div>Time of first arrival: <%= time_of_first_arrival %></div>
+			<li class="columns large-6 small-4">
+				<div class="city"><%= city %></div>
+				<div>1st arrival: <%= time_of_first_arrival %></div>
 				<input class="mapLink" type="button" index=<%=index %> value="get me there!" />
 			</li>
 		</script>
-		 <!--
-		<script src="js/custom/map.js"></script>
-		 -->
 		 
 		<!-- google analytics -->	
 		<script>

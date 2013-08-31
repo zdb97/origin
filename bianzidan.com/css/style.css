@@ -1,13 +1,24 @@
-body.map  #map-canvas{
-	width: 100%;	
-	height: 300px;
+/* global */
+body {
+	
 }
 
-.map .place-list {
-	
+
+
+/*  map.html */
+body.map {
+
+}
+body.map  #map-canvas{
+	height: 400px;	
 }
 
 .map .place-list li{
 	display: inline-block;
-	padding: 5px 10px;
+	padding: 3px 5px 7px;
+	font-size: 75%;
+}
+.map .place-list li .city {
+	font-weight: 700;
+	text-transform: uppercase;
 }
