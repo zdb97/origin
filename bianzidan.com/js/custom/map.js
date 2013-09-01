@@ -7,7 +7,9 @@ define(
 	], 
 	function($, _, Backbone) {
 	
-		
+	/*
+	* place model
+	*/	
 	var placeModel =  Backbone.Model.extend({
 		defaults: {
 			city: 	"",

@@ -19,6 +19,33 @@
 			"show_on_map":		"false"
         },
 		{
+            "city": 			"Brisbane",
+			"lat": 				"-27.47101",
+			"lng": 				"153.02345",
+			"country": 			"Australia",
+			"time_of_first_arrival":	"2007/01",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Gold Coast",
+			"lat": 				"-28.01726",
+			"lng": 				"153.42570",
+			"country": 			"Australia",
+			"time_of_first_arrival":	"2007/01",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Perth",
+			"lat": 				"-31.95300",
+			"lng": 				"115.85747",
+			"country": 			"Australia",
+			"time_of_first_arrival":	"2009/12",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
             "city": 			"Wuhan",
 			"lat": 				"30.59310",
 			"lng": 				"114.30539",
@@ -28,20 +55,20 @@
 			"show_on_map":		"false"
         },
 		{
-            "city": 			"Singapore",
-			"lat": 				"1.27989",
-			"lng": 				"103.84621",
-			"country": 			"Singapore",
-			"time_of_first_arrival":	"2012/10",
-			"image":			"",
-			"show_on_map":		"false"
-        },
-		{
             "city": 			"Hong Kong",
 			"lat": 				"22.27925",
 			"lng": 				"114.17404",
 			"country": 			"China",
 			"time_of_first_arrival":	"2006/02",
+			"image":			"",
+			"show_on_map":		"false"
+        },
+		{
+            "city": 			"Singapore",
+			"lat": 				"1.27989",
+			"lng": 				"103.84621",
+			"country": 			"Singapore",
+			"time_of_first_arrival":	"2012/10",
 			"image":			"",
 			"show_on_map":		"false"
         },

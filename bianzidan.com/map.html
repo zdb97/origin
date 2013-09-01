@@ -2,11 +2,11 @@
 <html lang="en">
 
 	<head>
-		<title>Zidan Bian's map. 卞紫丹的地图</title> 
+		<title>Zidan Bian's map. 卞紫丹的足迹</title> 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Zidan Bian's map. 卞紫丹的地图" />
+		<meta name="keywords" content="Zidan Bian's map. 卞紫丹的足迹" />
 		<meta name="description" content="Zidan Bian's online space, blog and everything of me. 卞紫丹" />
 		<meta name="author" content="Zidan Bian. 卞紫丹" />
 		
@@ -33,20 +33,19 @@
 		
 		<div class="row">			
 
-			<div class="columns large-4">
+			<div class="columns large-2">
 				<ul class="place-list row">
 					<!-- backbone template -->
 				</ul>
 			</div>
 			
-			<div id="map-canvas" class="map-canvas columns large-8"></div> 
+			<div id="map-canvas" class="map-canvas columns large-10"></div> 
 		</div>
 		
 		<script type="text/html" id="place-item">
-			<li class="columns large-6 small-4">
-				<div class="city"><%= city %></div>
-				<div>1st arrival: <%= time_of_first_arrival %></div>
-				<input class="mapLink" type="button" index=<%=index %> value="get me there!" />
+			<li class="large-12 small-4 columns">
+				<a href="#" class="city mapLink" index=<%=index %>><%= city %></a>
+				<div class="arrival-time">Arrival time: <%= time_of_first_arrival %></div>
 			</li>
 		</script>
 		 
