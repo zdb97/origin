@@ -9,16 +9,55 @@ body {
 body.map {
 
 }
-body.map  #map-canvas{
+.map  #map-canvas{
 	height: 400px;	
 }
 
-.map .place-list li{
+.map .place-list {
+	height: 400px;
+	overflow: auto;
+}
+
+.map .place-list li {
 	display: inline-block;
-	padding: 3px 5px 7px;
+	padding: 3px 5px 12px;
 	font-size: 75%;
 }
-.map .place-list li .city {
+.map .place-list li  a.city {
 	font-weight: 700;
 	text-transform: uppercase;
+	text-decoration: underline;
 }
+.map .place-list li  a.city:hover {
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 767px) {
+	.map  #map-canvas{
+		height: 300px;
+	}
+
+	.map .place-list {
+		height: auto;
+	}
+	
+	.map .place-list li {
+		min-width: 125px;
+		padding: 2px 5px 3px;
+	}
+	
+	.map .place-list li.columns:last-child {
+		float: left;
+	}
+} 
+
+@media only screen and (max-width: 479px) {
+	.map .place-list li {
+		min-width: 100px;
+	}
+	
+	.map .place-list li .arrival-time {
+		display: none;
+	}
+}
+
