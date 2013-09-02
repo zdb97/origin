@@ -13,6 +13,9 @@ require.config({
 		underscore: "lib/underscore-min",
 		backbone: "lib/backbone-min"
 		*/
+		
+		// internal js
+		map: "custom/map"
 	},
 	/* 
 	 * shim: http://requirejs.org/docs/api.html#config-shim
